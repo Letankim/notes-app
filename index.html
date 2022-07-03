@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Notes App</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <h1 class="name-app">My notes app</h1>
+                <div class="input-notes">
+                    <input type="text" class="note-title" placeholder = "Note Title">
+                    <textarea class="note-details" placeholder="Note Details"></textarea>
+                    <input type="text" class="note-title name-color" placeholder = "Name title colors (ex: red, green, blue)">
+                    <button class="btn-add">Add Note</button>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="container">
+                <h2>Your notes</h2>
+                <hr>
+                <div class="notes">
+                    <ul class="list-notes">
+                        <li class="note">
+                            <h3 class="note-counter">Note 1</h3>
+                            <h4 class="title">Message</h4>
+                            <p class="note-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, doloremque.</p> 
+                            <button class="btn-control delete">Delete this note</button>   
+                            <button class="btn-control edit">Edit this note</button>   
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+<script src="./app.js"></script>
+</html>
