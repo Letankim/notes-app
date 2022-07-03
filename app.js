@@ -18,10 +18,13 @@ function handleClick() {
     if(addTitle.value === "" || addText.value === "" || addColor.value === "") {
         return alert('Please enter note title, text and color');
     };
+    let getTime = new Date();
+    let valueGetTime = getTime.toLocaleString();
     let myObj = {
         title: addTitle.value,
         text: addText.value,
-        color: addColor.value
+        color: addColor.value,
+        time: valueGetTime
     };
     arrayObj.push(myObj);
     addTitle.value = ""
@@ -50,6 +53,7 @@ function showNotes() {
                             <h3 class="note-counter" style="background: ${ele.color}">Note ${index + 1}</h3>
                             <h4 class="title">${ele.title}</h4>
                             <p class="note-text">${ele.text}</p> 
+                            <span class = "time">${ele.time}</span>
                             <div class = "wrapper-btn">
                                 <button class="btn-control delete" id = "${index}" onclick = "deleteNote(this.id)">Delete this note</button>   
                                 <button class="btn-control edit" id = "${index}" onclick = "editNote(this.id)">Edit this note</button>   
