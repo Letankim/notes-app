@@ -96,7 +96,7 @@ function deleteNote(index) {
 };
 // edit note
 function editNote(index) {
-    if(addTitle.value !== "" || addText.value !== "" || addColor.value !== "") {
+    if(addTitle.value !== "" || addText.value !== "") {
         return alert("Please delete value in input before edit");
     }
     let notes = localStorage.getItem("notes");
@@ -104,7 +104,6 @@ function editNote(index) {
     // update value 
     addTitle.value = arrayObj[index].title;
     addText.value = arrayObj[index].text;
-    addColor.value = arrayObj[index].color;
     // delete to create new note
     arrayObj.splice(index, 1);
     setItem();
