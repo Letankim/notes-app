@@ -1,7 +1,6 @@
 let btnAdd = document.querySelector('.btn-add'),
     addTitle = document.querySelector('.note-title'),
-    addText = document.querySelector('.note-details'),
-    addColor = document.querySelector('.name-color');
+    addText = document.querySelector('.note-details');
 let arrayObj = [];
 
 btnAdd.addEventListener('click', (e) =>{
@@ -12,24 +11,35 @@ document.querySelector('.input-notes').addEventListener('keydown', (e) =>{
         handleClick();
     }
 });
+// handle color 
+function handleAutoColor() {
+    var colorArray = [];
+    for(var i = 1; i <= 3; i++) {
+        var randomNumber = Math.floor(Math.random()*255);
+        colorArray.push(randomNumber + 1);
+    }
+    return `rgb(${colorArray[0]}, ${colorArray[1]}, ${colorArray[2]})`;
+};
+
 // handle
 function handleClick() {
     // check input 
-    if(addTitle.value === "" || addText.value === "" || addColor.value === "") {
+    if(addTitle.value === "" || addText.value === "") {
         return alert('Please enter note title, text and color');
-    };
+    }; 
+    let randomColor = handleAutoColor();
+    console.log(randomColor);
     let getTime = new Date();
     let valueGetTime = getTime.toLocaleString();
     let myObj = {
         title: addTitle.value,
         text: addText.value,
-        color: addColor.value,
+        color: randomColor,
         time: valueGetTime
     };
     arrayObj.push(myObj);
     addTitle.value = ""
     addText.value = ""
-    addColor.value = ""
     setItem();
     showNotes();
 };
