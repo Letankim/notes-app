@@ -28,7 +28,6 @@ function handleClick() {
         return alert('Please enter note title, text and color');
     }; 
     let randomColor = handleAutoColor();
-    console.log(randomColor);
     let getTime = new Date();
     let valueGetTime = getTime.toLocaleString();
     let myObj = {
