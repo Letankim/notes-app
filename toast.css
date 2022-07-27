@@ -1,0 +1,117 @@
+
+.btn {
+    padding: 7px 20px;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: 600;
+    min-width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.btn.show-success {
+    background-color: #47d864;
+}
+.btn.show-error {
+    background-color: #ffc021;
+}
+#toast {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+}
+.toast {
+    display: flex;
+    align-items: center;
+    padding: 20px 0px;
+    border-radius: 2px;
+    border-left: 4px solid;
+    background-color: #fff;
+    min-width: 400px;
+    max-width: 450px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    animation: slideToastMessage 0.2s ease, fadeOut linear 1s 3s forwards;
+    transition: all linear 0.2s;
+}
+
+@keyframes slideToastMessage {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 32px));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+.toast + .toast {
+    margin-top: 10px;
+}
+.toast__success {
+    border-color: #47d864;
+}
+.toast__success .toast__icon {
+    color: #47d864 ;
+}
+.toast__info {
+    border-color: #2f86ab;
+}
+.toast__info .toast__icon {
+    color: #2f86ab;
+}
+.toast__warning {
+    border-color: #ffc021;
+}
+.toast__warning .toast__icon {
+    color: #ffc021;
+}
+.toast__icon {
+    font-size: 24px;
+}
+.toast__icon,
+.toast__close {
+    padding: 0px 16px;
+}
+.toast__body {
+   flex: 1;
+}
+.toast__body--title {
+    margin: 0px;
+    font-size: 1.3rem;
+}
+.toast__body--conttent {
+   margin: 0px;
+   padding-top: 7px;
+}
+.toast__close {
+   color: rgba(0, 0, 0, 0.3);
+   font-size: 24px;
+   cursor: pointer;
+}
+
+@media (max-width: 739px) {
+    #toast {
+        position: fixed;
+        top: 32px;
+        right: 5px;
+    }
+    .toast {
+        display: flex;
+        align-items: center;
+        padding: 20px 0px;
+        border-radius: 2px;
+        border-left: 4px solid;
+        background-color: #fff;
+        min-width: 95%;
+        max-width: 95%;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+        animation: slideToastMessage 0.2s ease, fadeOut linear 1s 3s forwards;
+        transition: all linear 0.2s;
+    }
+}
+

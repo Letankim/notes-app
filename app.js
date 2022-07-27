@@ -1,6 +1,7 @@
 let btnAdd = document.querySelector('.btn-add'),
     addTitle = document.querySelector('.note-title'),
-    addText = document.querySelector('.note-details');
+    addText = document.querySelector('.note-details'),
+    done = document.querySelector('.done');
 let arrayObj = [];
 
 btnAdd.addEventListener('click', (e) =>{
@@ -9,7 +10,7 @@ btnAdd.addEventListener('click', (e) =>{
 document.querySelector('.input-notes').addEventListener('keydown', (e) =>{
     if(e.key === "Enter") {
         handleClick();
-    }
+    };
 });
 // handle color 
 function handleAutoColor() {
@@ -27,6 +28,8 @@ function handleClick() {
     if(addTitle.value === "" || addText.value === "") {
         return alert('Please enter note title, text and color');
     }; 
+    showSuccess();
+    done.play();
     let randomColor = handleAutoColor();
     let getTime = new Date();
     let valueGetTime = getTime.toLocaleString();
@@ -37,13 +40,18 @@ function handleClick() {
         time: valueGetTime
     };
     arrayObj.push(myObj);
-    addTitle.value = ""
-    addText.value = ""
+    addTitle.value = "";
+    addText.value = "";
     setItem();
     showNotes();
 };
 // update array in local storage
 function setItem() {
+    arrayObj.sort((item1, item2) => {
+        if(item1.time > item2.time) {
+            return -1;
+        };
+    });
     localStorage.setItem("notes", JSON.stringify(arrayObj));
 };
 // show notes
@@ -53,7 +61,7 @@ function showNotes() {
         arrayObj = [];
     } else {
         arrayObj = JSON.parse(notes);
-    }
+    };
     
     let renderHtml = "";
     arrayObj.forEach((ele, index) => {
@@ -74,7 +82,7 @@ function showNotes() {
         document.querySelector('.list-notes').innerHTML = "Not notes yet! Using the form above to add a note."
     } else {
         document.querySelector('.list-notes').innerHTML = renderHtml;
-    }
+    };
 };
 
 showNotes();
@@ -88,17 +96,18 @@ function deleteNote(index) {
             arrayObj = [];
         } else {
             arrayObj = JSON.parse(notes);
-        }
+        };
         arrayObj.splice(index, 1);
-    }
+    };
     setItem();
     showNotes();
 };
 // edit note
 function editNote(index) {
+    console.log(index)
     if(addTitle.value !== "" || addText.value !== "") {
         return alert("Please delete value in input before edit");
-    }
+    };
     let notes = localStorage.getItem("notes");
         arrayObj = JSON.parse(notes);
     // update value 
@@ -108,4 +117,4 @@ function editNote(index) {
     arrayObj.splice(index, 1);
     setItem();
     showNotes();
-}
+};
