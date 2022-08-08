@@ -18,13 +18,13 @@ function toast({
             if(e.target.closest('.toast__close')) {
                main.removeChild(toast);
                clearTimeout(IDtoastDuration);
-            }
-        }
+            };
+        };
         const icons = {
             success: 'fas fa-check-circle',
             info: 'fas fa-info-circle',
             warning: 'fas fa-exclamation-circle'
-        }
+        };
         toast.classList.add('toast');
         toast.classList.add('toast', `toast__${type}`);
         toast.innerHTML = `
@@ -42,11 +42,8 @@ function toast({
             </div>
         `
         main.appendChild(toast);
-        
-    }
-}
-
-
+    };
+};
 
 function showSuccess() {
     toast({
@@ -54,5 +51,5 @@ function showSuccess() {
         message: 'The note has been created in your list notes below.',
         type: 'success', 
         duration: 1000
-    })
-}
+    });
+};
