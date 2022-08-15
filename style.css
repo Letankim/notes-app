@@ -92,11 +92,18 @@ h2 {
     border: 1px solid #333;
     background-color: #fff;
 }
+.header-note {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .note-counter {
     padding: 10px;
-    background-color: rgb(209, 149, 149);
     font-size: 20px;
     color: #fff;
+}
+.check-delete {
+    margin-right: 10px;
 }
 .title {
     font-size: 20px;
@@ -151,6 +158,119 @@ h2 {
     font-style: italic;
 }
 
+/* calculator */
+.wraper-cal {
+    width: 100%;
+    height: 100%;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    top: -100%;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.overlay.active {
+    top: 0;
+}
+
+.cal-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: antiquewhite;
+    padding: 15px 10px;
+    top: -100%;
+    transition: all 0.2s;
+    border-radius: 5px;
+}
+.cal-container.active {
+    top: 50%;
+}
+.cal-display {
+    background:rgb(152, 157, 158);
+    width: 100%;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+}
+.display {
+    font-size: 50px;
+    font-weight: 600;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    right: 0px;
+    text-align: right;
+    overflow-x: auto;
+}
+.cal-body {
+    margin-top: 10px;
+    width: 100%;
+}
+.btn-control-practive {
+
+}
+.lists {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -4px;
+    margin-right: -4px;
+}
+.btn {
+    flex: 0 0 25%;
+    max-width: 25%;
+    height: 55px;
+    padding-left: -4px;
+    padding-right: -4px;
+    background-color: cornflowerblue;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+.ac-all {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.btn.ans-btn {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.number,
+.cal-logic {
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content:  center;
+    width: 100%;
+    height: 100%;
+}
+.ans-btn .answer {
+    font-size: 30px;
+}
+.more-funs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calculator {
+    padding: 5px 10px;
+}
+.calculator img {
+    margin-top: 20px;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+}
+
 @media (max-width: 739px) {
     .wrapper {
         width: 95%;
@@ -168,6 +288,9 @@ h2 {
         text-align: center;
         font-size: 30px;
     }
+    .delete-all {
+        font-size: 15px;
+    }
     .note {
         flex: 0 0 100%;
         max-width: 100%;
@@ -176,4 +299,22 @@ h2 {
         padding: 10px;
         font-size: 14px;
     }
+    .wraper-cal {
+        padding: 0px 10px;
+    }
+    .cal-container {
+        width: 100%;
+    }
+    .btn {
+        flex: 0 0 25%;
+        height: 50px;
+    }
+    .ac-all {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .btn.ans-btn {
+        flex: 0 0 50%;
+    }
+    
 }

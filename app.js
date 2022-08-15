@@ -67,7 +67,10 @@ function showNotes() {
     arrayObj.forEach((ele, index) => {
         renderHtml += `
                         <li class="note">
-                            <h3 class="note-counter" style="background: ${ele.color}">Note ${index + 1}</h3>
+                            <div class="header-note" style="background: ${ele.color}">
+                                <h3 class="note-counter">Note ${index + 1}</h3>
+                                <input type="checkbox" name="" id="${index}" class = "check-delete" onclick = "checkDelete(this, this.id)">
+                            </div>  
                             <h4 class="title">${ele.title}</h4>
                             <p class="note-text">${ele.text}</p> 
                             <span class = "time">${ele.time}</span>
@@ -86,6 +89,14 @@ function showNotes() {
 };
 
 showNotes();
+// let listCheck = []
+// function checkDelete(ele, index) {
+//     if (ele.checked) {
+//         listCheck.push(index);
+//     } else {
+//         listCheck.splice(index, 1);
+//     };
+// };
 
 // delete note
 function deleteNote(index, length) {
@@ -109,7 +120,7 @@ deleteAll.onclick = function () {
         deleteNote(0, notes.length);
     } else {
         alert("No notes to delete");
-    }
+    };
 };
 // edit note
 function editNote(index) {
