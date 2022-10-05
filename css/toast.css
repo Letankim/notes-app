@@ -40,19 +40,13 @@
     border-color: #47d864;
 }
 .toast__success .toast__icon {
-    color: #47d864 ;
+    color: #47d864;
 }
-.toast__info {
-    border-color: #2f86ab;
+.toast__error {
+    border-color: #ff1a00;
 }
-.toast__info .toast__icon {
-    color: #2f86ab;
-}
-.toast__warning {
-    border-color: #ffc021;
-}
-.toast__warning .toast__icon {
-    color: #ffc021;
+.toast__error .toast__icon {
+    color: #ff1a00;
 }
 .toast__icon {
     font-size: 24px;

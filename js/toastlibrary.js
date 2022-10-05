@@ -1,7 +1,7 @@
 function toast({
     title = '',
     message = '',
-    type = 'success',
+    type = '',
     duration = 3000
 }) {
     const main = document.getElementById('toast');
@@ -22,8 +22,7 @@ function toast({
         };
         const icons = {
             success: 'fas fa-check-circle',
-            info: 'fas fa-info-circle',
-            warning: 'fas fa-exclamation-circle'
+            error: 'fas fa-exclamation-circle'
         };
         toast.classList.add('toast');
         toast.classList.add('toast', `toast__${type}`);
@@ -44,12 +43,20 @@ function toast({
         main.appendChild(toast);
     };
 };
-
+// show message when success or error
 function showSuccess() {
     toast({
         title: 'Successfully',
         message: 'The note has been created in your list notes below.',
         type: 'success', 
         duration: 1000
+    });
+};
+function showError() {
+    toast({
+        title: 'Error',
+        message: 'Title and notes details can not be empty. Please double check your notes!!',
+        type: 'error', 
+        duration: 3000
     });
 };

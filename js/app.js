@@ -1,19 +1,33 @@
-let btnAdd = document.querySelector('.btn-add'),
+// store some thing to call 
+let btnAdd = document.querySelector('.add-data'),
     addTitle = document.querySelector('.note-title'),
     addText = document.querySelector('.note-details'),
-    done = document.querySelector('.done'),
-    deleteAll = document.querySelector('.delete-all');
+    audio = document.querySelector('.sound'),
+    deleteAll = document.querySelector('.delete-all'),
+    btnUpdate = document.querySelector('.update-data');
+var message;
 let arrayObj = [];
-
+// click button update and add
 btnAdd.addEventListener('click', (e) =>{
-    handleClick();
+    message = '';
+    handleClick(message);
 });
+btnUpdate.addEventListener('click', (e) =>{
+    message = "The last update: ";
+    handleClick(message);
+});
+// when enter will be add note
 document.querySelector('.input-notes').addEventListener('keydown', (e) =>{
     if(e.key === "Enter") {
-        handleClick();
+        message = "";
+        if(btnUpdate.classList.contains('active')) {
+            handleBtnUpdate();
+            message ="The last update: ";
+        }
+        handleClick(message);
     };
 });
-// handle color 
+// handle random color title 
 function handleAutoColor() {
     var colorArray = [];
     for(var i = 1; i <= 3; i++) {
@@ -22,14 +36,19 @@ function handleAutoColor() {
     }
     return `rgb(${colorArray[0]}, ${colorArray[1]}, ${colorArray[2]})`;
 };
-// handle
-function handleClick() {
+// handle event when click 
+function handleClick(messageUpdate) {
     // check input 
     if(addTitle.value === "" || addText.value === "") {
-        return alert('Please enter note title, text and color');
-    }; 
+        showError();
+        audio.src = './sound/error.mp3';
+        audio.play();
+        return 0;
+    };
+    // show message when add successfully
     showSuccess();
-    done.play();
+    audio.src = './sound/success.mp3';
+    audio.play();
     let randomColor = handleAutoColor();
     let getTime = new Date();
     let valueGetTime = getTime.toLocaleString();
@@ -37,7 +56,8 @@ function handleClick() {
         title: addTitle.value,
         text: addText.value,
         color: randomColor,
-        time: valueGetTime
+        time: valueGetTime,
+        messageUpdate: messageUpdate,
     };
     arrayObj.push(myObj);
     addTitle.value = "";
@@ -54,15 +74,18 @@ function setItem() {
     });
     localStorage.setItem("notes", JSON.stringify(arrayObj));
 };
-// show notes
-function showNotes() {
+// check data in storage
+function checkData() {
     let notes = localStorage.getItem("notes");
     if(notes === null) {
         arrayObj = [];
     } else {
         arrayObj = JSON.parse(notes);
     };
-    
+}
+// show notes
+function showNotes() {
+    checkData();
     let renderHtml = "";
     arrayObj.forEach((ele, index) => {
         renderHtml += `
@@ -73,7 +96,7 @@ function showNotes() {
                             </div>  
                             <h4 class="title">${ele.title}</h4>
                             <p class="note-text">${ele.text}</p> 
-                            <span class = "time">${ele.time}</span>
+                            <span class = "time">${ele.messageUpdate ? ele.messageUpdate : ''}${ele.time}</span>
                             <div class = "wrapper-btn">
                                 <button class="btn-control delete" id = "${index}" onclick = "deleteNote(this.id, 1)">Delete this note</button>   
                                 <button class="btn-control edit" id = "${index}" onclick = "editNote(this.id)">Edit this note</button>   
@@ -102,12 +125,7 @@ showNotes();
 function deleteNote(index, length) {
     var confirmDelete = confirm("Do you want to delete this note?");
     if(confirmDelete) {
-        let notes = localStorage.getItem("notes");
-        if(notes === null) {
-            arrayObj = [];
-        } else {
-            arrayObj = JSON.parse(notes);
-        };
+        checkData();
         arrayObj.splice(index, length);
     };
     setItem();
@@ -122,6 +140,14 @@ deleteAll.onclick = function () {
         alert("No notes to delete");
     };
 };
+// btn update
+function handleBtnUpdate() {
+    btnUpdate.classList.remove('active');
+    btnAdd.classList.add('active');
+}
+btnUpdate.onclick = function () {
+    handleBtnUpdate();
+}
 // edit note
 function editNote(index) {
     if(addTitle.value !== "" || addText.value !== "") {
@@ -132,12 +158,13 @@ function editNote(index) {
     // update value 
     addTitle.value = arrayObj[index].title;
     addText.value = arrayObj[index].text;
+    btnUpdate.classList.add('active');
+    btnAdd.classList.remove('active');
     // delete to create new note
     arrayObj.splice(index, 1);
     setItem();
     showNotes();
 };
-
 
 
 

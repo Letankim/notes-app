@@ -27,7 +27,7 @@ lists.forEach(function(btn) {
             arrayText.splice(arrayText.length-1, 1);
             if(arrayText.length != 0) {
                 input.innerHTML = arrayText.join('');
-            } else {
+            }else {
                 input.innerHTML = '0';
             }
         }

@@ -66,7 +66,11 @@ body {
     border: none;
     transition: all 0.2s;
     cursor: pointer;
+    display: none;
     -webkit-tap-highlight-color: transparent;
+}
+.btn-add.active {
+    display: block;
 }
 .btn-add:hover {
     background-color: rgba(5, 29, 145, 0.9);
@@ -108,6 +112,7 @@ h2 {
 .title {
     font-size: 20px;
     padding: 3px 10px;
+    text-transform: capitalize;
     font-family: "Signika Negative";
 }
 .note-text {
@@ -231,8 +236,10 @@ h2 {
     padding-left: -4px;
     padding-right: -4px;
     background-color: cornflowerblue;
-    cursor: pointer;
     border: 1px solid #ccc;
+}
+.number {
+    cursor: pointer;
 }
 .ac-all {
     flex: 0 0 50%;
@@ -269,6 +276,7 @@ h2 {
     height: 30px;
     object-fit: cover;
     object-position: center;
+    cursor : pointer;
 }
 
 @media (max-width: 739px) {
