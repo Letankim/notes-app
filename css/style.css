@@ -95,6 +95,10 @@ h2 {
     max-width: 49%;
     border: 1px solid #333;
     background-color: #fff;
+    transition: all 0.2s;
+}
+.note.checked {
+    opacity: .3;
 }
 .header-note {
     display: flex;
@@ -108,6 +112,12 @@ h2 {
 }
 .check-delete {
     margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+.check-delete:checked {
+    background-color: rgb(17, 174, 221);
 }
 .title {
     font-size: 20px;

@@ -36,8 +36,10 @@ function handleAutoColor() {
     }
     return `rgb(${colorArray[0]}, ${colorArray[1]}, ${colorArray[2]})`;
 };
+//
+
 // handle event when click 
-function handleClick(messageUpdate) {
+function handleClick(messageUpdate, check) {
     // check input 
     if(addTitle.value === "" || addText.value === "") {
         showError();
@@ -58,6 +60,7 @@ function handleClick(messageUpdate) {
         color: randomColor,
         time: valueGetTime,
         messageUpdate: messageUpdate,
+        isDone: false
     };
     arrayObj.push(myObj);
     addTitle.value = "";
@@ -89,10 +92,10 @@ function showNotes() {
     let renderHtml = "";
     arrayObj.forEach((ele, index) => {
         renderHtml += `
-                        <li class="note">
+                        <li class="note ${ele.isDone? 'checked' :''}">
                             <div class="header-note" style="background: ${ele.color}">
                                 <h3 class="note-counter">Note ${index + 1}</h3>
-                                <input type="checkbox" name="" id="${index}" class = "check-delete" onclick = "checkDelete(this, this.id)">
+                                <input type="checkbox" id="${index}" class = "check-delete ${ele.isDone}" onclick = "check(this, this.id)" ${ele.isDone? 'checked' :''} title = "${ele.isDone? 'This note is done' :'This note is not done'}">
                             </div>  
                             <h4 class="title">${ele.title}</h4>
                             <p class="note-text">${ele.text}</p> 
@@ -112,14 +115,23 @@ function showNotes() {
 };
 
 showNotes();
-// let listCheck = []
-// function checkDelete(ele, index) {
-//     if (ele.checked) {
-//         listCheck.push(index);
-//     } else {
-//         listCheck.splice(index, 1);
-//     };
-// };
+let listCheck = []
+function check(ele, index) {
+    let notes = localStorage.getItem("notes");
+    if(notes === null) {
+        arrayObj = [];
+    } else {
+        arrayObj = JSON.parse(notes);
+    };
+    if(ele.checked) {
+        ele.style.check = 'checked';
+        arrayObj[index].isDone = true;
+    } else {
+        arrayObj[index].isDone = false;
+    }
+    localStorage.setItem("notes", JSON.stringify(arrayObj));
+    showNotes();
+};
 
 // delete note
 function deleteNote(index, length) {
