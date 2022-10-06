@@ -5,7 +5,6 @@ function toast({
     duration = 3000
 }) {
     const main = document.getElementById('toast');
-    
     if(main) {
         const toast = document.createElement('div');
         const delay = (duration / 1000).toFixed(2);
@@ -13,7 +12,6 @@ function toast({
         const IDtoastDuration = setTimeout(function () {
             main.removeChild(toast);
         }, duration + 1000);
-    
         toast.onclick = function(e) {
             if(e.target.closest('.toast__close')) {
                main.removeChild(toast);

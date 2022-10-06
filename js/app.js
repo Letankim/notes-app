@@ -5,6 +5,7 @@ let btnAdd = document.querySelector('.add-data'),
     audio = document.querySelector('.sound'),
     deleteAll = document.querySelector('.delete-all'),
     btnUpdate = document.querySelector('.update-data');
+let indexArr = 0;
 var message;
 let arrayObj = [];
 // click button update and add
@@ -60,7 +61,8 @@ function handleClick(messageUpdate, check) {
         color: randomColor,
         time: valueGetTime,
         messageUpdate: messageUpdate,
-        isDone: false
+        isDone: false, 
+        index: indexArr++
     };
     arrayObj.push(myObj);
     addTitle.value = "";
@@ -71,7 +73,7 @@ function handleClick(messageUpdate, check) {
 // update array in local storage
 function setItem() {
     arrayObj.sort((item1, item2) => {
-        if(item1.time > item2.time) {
+        if(item1.index > item2.index) {
             return -1;
         };
     });
@@ -179,5 +181,31 @@ function editNote(index) {
 };
 
 
+var array = [1,  2, 7 , 5, 3, 4, 5, 6];
+sort(array, 1);
+function sort(array, check) {
+    if(check == 1) {
+        for(var i = 0; i < array.length; i++) {
+            for(var j = 0; j < array.length; ++j) {
+                if(array[j] > array[j + 1]) {
+                    var temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    } else {
+        for(var i = 0; i < array.length; i++) {
+            for(var j = 0; j < array.length; ++j) {
+                if(array[j] < array[j + 1]) {
+                    var temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    }
+    return array;
+}
 
-
+console.log(array);
